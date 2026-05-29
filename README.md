@@ -1,16 +1,97 @@
-# React + Vite
+Dynamic Poll Dashboard – Chart.js Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project Overview
 
-Currently, two official plugins are available:
+This project demonstrates how to integrate a non-React library (Chart.js) into a React application using useEffect and useRef. The application allows users to vote for their favorite JavaScript framework and displays the results in a dynamic bar chart that updates in real time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features
 
-## React Compiler
+• Vote for React, Vue, Angular, or Svelte.
+• Display poll results using a Chart.js bar chart.
+• Update chart data automatically when React state changes.
+• Reset all vote counts with a single button.
+• Prevent memory leaks and canvas rendering errors using Chart.js cleanup methods.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Technologies Used
 
-## Expanding the ESLint configuration
+• React
+• Vite
+• Chart.js
+• JavaScript
+• CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Project Structure
+
+chartjs-integration/
+
+├── src/
+
+│   ├── components/
+
+│   │   └── PollChart.jsx
+
+│   ├── App.jsx
+
+│   ├── App.css
+
+│   └── main.jsx
+
+├── package.json
+
+└── README.md
+
+How to Run
+
+1. Create the Vite React project:
+
+   npm create vite@latest chartjs-integration -- --template react
+
+2. Move into the project folder:
+
+   cd chartjs-integration
+
+3. Install dependencies:
+
+   npm install
+
+4. Install Chart.js:
+
+   npm install chart.js
+
+5. Start the development server:
+
+   npm run dev
+
+6. Open the local URL shown in the terminal, usually:
+
+   http://localhost:5173
+
+How It Works
+
+1. React stores the vote counts using useState.
+2. useRef is used to access the HTML canvas element and store the Chart.js instance.
+3. useEffect creates the Chart.js bar chart when the component loads.
+4. When votes change, the existing chart data is updated and chart.update() redraws the chart.
+5. The cleanup function destroys the chart instance when the component unmounts, preventing memory leaks and canvas rendering errors.
+
+Test Cases
+
+Normal Cases
+
+1. Vote for React once and verify the React vote count increases by one.
+2. Vote for Vue multiple times and verify the chart updates correctly.
+3. Click Reset Votes and verify all vote counts return to zero.
+
+Edge Cases
+
+1. Click voting buttons rapidly and verify the chart continues to update correctly.
+2. Click Reset Votes multiple times and verify the application remains stable.
+3. Refresh or unmount the component and verify no Chart.js canvas errors occur.
+
+Learning Outcomes
+
+• Integrating a non-React JavaScript library into React.
+• Managing external libraries with useEffect.
+• Using useRef to work with DOM elements and third-party instances.
+• Synchronizing React state with Chart.js.
+• Implementing cleanup functions to prevent memory leaks and rendering issues.
